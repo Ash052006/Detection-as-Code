@@ -1,0 +1,30 @@
+# =============================================================================
+# DETECTION RULE: Suspicious PowerShell / script execution
+# =============================================================================
+# Patterns often used to download or execute code remotely.
+# =============================================================================
+
+id: suspicious-powershell-002
+name: "Suspicious PowerShell and script execution"
+description: "Alert when log contains PowerShell/script patterns used for execution"
+severity: high
+enabled: true
+
+condition:
+  type: log_match
+  field: message
+  patterns:
+    - "DownloadString("
+    - "DownloadFile("
+    - "WebClient"
+    - "Net.WebClient"
+    - "-EncodedCommand"
+    - "-Enc "
+    - "Bypass"
+    - "ExecutionPolicy"
+    - "Hidden"
+    - " -w hidden"
+    - "Start-Process"
+    - "Invoke-Command"
+    - "Invoke-WebRequest"
+    - "IWR "

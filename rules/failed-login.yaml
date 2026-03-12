@@ -1,0 +1,31 @@
+# =============================================================================
+# DETECTION RULE: Failed login / authentication failure
+# =============================================================================
+# Log lines indicating failed auth (useful with threshold rules later).
+# =============================================================================
+
+id: failed-login-007
+name: "Failed login or authentication failure"
+description: "Alert when log indicates failed login or auth failure"
+severity: medium
+enabled: true
+
+condition:
+  type: log_match
+  field: message
+  patterns:
+    - "Failed password"
+    - "failed login"
+    - "authentication failure"
+    - "Invalid password"
+    - "Login failed"
+    - "Access denied"
+    - "Unauthorized"
+    - "wrong password"
+    - "incorrect password"
+    - "logon failure"
+    - "STATUS_LOGON_FAILURE"
+    - "Account locked"
+    - "Too many failures"
+    - "Brute force"
+    - "multiple failed"

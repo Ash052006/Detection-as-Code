@@ -1,0 +1,34 @@
+# =============================================================================
+# DETECTION RULE: Dangerous Linux / Unix commands
+# =============================================================================
+# High-risk commands that can destroy data or weaken security.
+# =============================================================================
+
+id: dangerous-linux-006
+name: "Dangerous Linux/Unix command"
+description: "Alert when log contains high-risk system commands"
+severity: high
+enabled: true
+
+condition:
+  type: log_match
+  field: message
+  patterns:
+    - "rm -rf"
+    - "rm -fr"
+    - "chmod 777"
+    - "chmod 666"
+    - "dd if="
+    - "mkfs"
+    - "> /dev/sda"
+    - ":(){ :|:& };:"
+    - "fork bomb"
+    - "iptables -F"
+    - "ufw disable"
+    - "setenforce 0"
+    - "passwd -d"
+    - "usermod -o"
+    - "visudo"
+    - "sudo su"
+    - "nopasswd"
+    - "ALL=(ALL) NOPASSWD"

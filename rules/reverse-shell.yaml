@@ -1,0 +1,32 @@
+# =============================================================================
+# DETECTION RULE: Reverse shell / remote access patterns
+# =============================================================================
+# Commands or log lines suggesting reverse shell or remote code execution.
+# =============================================================================
+
+id: reverse-shell-003
+name: "Reverse shell or remote access"
+description: "Alert when log suggests reverse shell, bind shell, or remote execution"
+severity: critical
+enabled: true
+
+condition:
+  type: log_match
+  field: message
+  patterns:
+    - "/bin/bash -i"
+    - "bash -i"
+    - "nc -e"
+    - "ncat -e"
+    - "netcat"
+    - "reverse shell"
+    - "bind shell"
+    - "pty.spawn"
+    - "socket.socket"
+    - "exec(/bin/sh"
+    - "cmd.exe /c"
+    - "powershell -nop"
+    - "powershell -noninteractive"
+    - "kali.org"
+    - "meterpreter"
+    - "payload"

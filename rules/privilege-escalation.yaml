@@ -1,0 +1,42 @@
+# =============================================================================
+# DETECTION RULE: Privilege escalation indicators
+# =============================================================================
+# Commands or events suggesting privilege escalation attempts.
+# =============================================================================
+
+id: privilege-escalation-012
+name: "Privilege escalation indicator"
+description: "Alert when log suggests privilege escalation"
+severity: high
+enabled: true
+
+condition:
+  type: log_match
+  field: message
+  patterns:
+    - "sudo "
+    - "su -"
+    - "runas"
+    - "RunAs"
+    - "elevate"
+    - "UAC bypass"
+    - "token impersonation"
+    - "SeDebugPrivilege"
+    - "SeImpersonatePrivilege"
+    - "getsystem"
+    - "getadmin"
+    - "bypassuac"
+    - "Privilege::"
+    - "token::elevate"
+    - "incognito"
+    - "psexec"
+    - "PsExec"
+    - "winexe"
+    - "pth "
+    - "pass-the-hash"
+    - "overpass-the-hash"
+    - "golden ticket"
+    - "silver ticket"
+    - "dcsync"
+    - "DCSync"
+    - "mimikatz"

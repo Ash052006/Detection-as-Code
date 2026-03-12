@@ -1,0 +1,38 @@
+# =============================================================================
+# DETECTION RULE: SQL injection patterns
+# =============================================================================
+# Common SQLi strings in query or message (e.g. web/app logs).
+# =============================================================================
+
+id: sql-injection-010
+name: "Possible SQL injection"
+description: "Alert when log contains common SQL injection patterns"
+severity: critical
+enabled: true
+
+condition:
+  type: log_match
+  field: message
+  patterns:
+    - "1=1"
+    - "1' OR '1'='1"
+    - "OR 1=1"
+    - "UNION SELECT"
+    - "UNION ALL SELECT"
+    - "'; DROP"
+    - "'; --"
+    - "' OR ''='"
+    - "admin'--"
+    - "exec("
+    - "execute("
+    - "xp_cmdshell"
+    - "CONCAT("
+    - "CHAR("
+    - "benchmark("
+    - "sleep("
+    - "WAITFOR DELAY"
+    - "information_schema"
+    - "sys.tables"
+    - "load_file("
+    - "into outfile"
+    - "into dumpfile"

@@ -1,0 +1,36 @@
+# =============================================================================
+# DETECTION RULE: Persistence mechanisms
+# =============================================================================
+# Scheduled tasks, registry run keys, startup, cron.
+# =============================================================================
+
+id: persistence-005
+name: "Persistence mechanism"
+description: "Alert when log suggests persistence (scheduled task, registry, startup)"
+severity: high
+enabled: true
+
+condition:
+  type: log_match
+  field: message
+  patterns:
+    - "schtasks"
+    - "at.exe"
+    - "Register-ScheduledTask"
+    - "New-ScheduledTask"
+    - "reg add HKLM"
+    - "reg add HKCU"
+    - "RunOnce"
+    - "Run\"
+    - "StartupFolder"
+    - "Startup"
+    - "crontab -e"
+    - "crontab -l"
+    - "/etc/cron"
+    - "systemctl enable"
+    - "launchd"
+    - "plist"
+    - "WMI"
+    - "Win32_ScheduledJob"
+    - "EventTrigger"
+    - "logon script"

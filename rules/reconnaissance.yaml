@@ -1,0 +1,43 @@
+# =============================================================================
+# DETECTION RULE: Reconnaissance / scanning
+# =============================================================================
+# Commands or log lines suggesting scanning or enumeration.
+# =============================================================================
+
+id: reconnaissance-013
+name: "Reconnaissance or scanning"
+description: "Alert when log suggests recon or scanning activity"
+severity: medium
+enabled: true
+
+condition:
+  type: log_match
+  field: message
+  patterns:
+    - "nmap"
+    - "nikto"
+    - "sqlmap"
+    - "dirb"
+    - "gobuster"
+    - "ffuf"
+    - "masscan"
+    - "netdiscover"
+    - "arp-scan"
+    - "whois "
+    - "traceroute"
+    - "enum4linux"
+    - "bloodhound"
+    - "SharpHound"
+    - "PowerView"
+    - "Get-NetUser"
+    - "Get-NetGroup"
+    - "net user"
+    - "net group"
+    - "net localgroup"
+    - "ipconfig /all"
+    - "systeminfo"
+    - "tasklist"
+    - "ps aux"
+    - "Get-Process"
+    - "port scan"
+    - "vulnerability scan"

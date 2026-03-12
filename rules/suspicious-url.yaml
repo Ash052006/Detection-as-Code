@@ -1,0 +1,35 @@
+# =============================================================================
+# DETECTION RULE: Suspicious URL / domain
+# =============================================================================
+# Known bad TLDs or keywords in URLs (adjust for your environment).
+# =============================================================================
+
+id: suspicious-url-011
+name: "Suspicious URL or domain"
+description: "Alert when log contains suspicious URL/domain patterns"
+severity: medium
+enabled: true
+
+condition:
+  type: log_match
+  field: message
+  patterns:
+    - ".onion"
+    - "tor exit"
+    - "pastebin.com"
+    - "hastebin.com"
+    - "transfer.sh"
+    - "ngrok"
+    - "serveo"
+    - "localtunnel"
+    - "requestbin"
+    - "webhook.site"
+    - "canarytokens"
+    - "evil.com"
+    - "malware"
+    - "phishing"
+    - "c2 "
+    - "command and control"
+    - "callback"
+    - "beacon"
+    - "exfil"

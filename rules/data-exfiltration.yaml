@@ -1,0 +1,37 @@
+# =============================================================================
+# DETECTION RULE: Data exfiltration patterns
+# =============================================================================
+# Outbound transfer, paste sites, or suspicious upload/download.
+# =============================================================================
+
+id: data-exfil-008
+name: "Possible data exfiltration"
+description: "Alert when log suggests data upload or exfil to external"
+severity: high
+enabled: true
+
+condition:
+  type: log_match
+  field: message
+  patterns:
+    - "pastebin.com"
+    - "hastebin"
+    - "transfer.sh"
+    - "curl.*http"
+    - "wget.*http"
+    - "Upload"
+    - "exfil"
+    - "exfiltration"
+    - "outbound"
+    - "Data sent"
+    - "DNS tunnel"
+    - "icmp tunnel"
+    - "encrypted channel"
+    - "base64.*curl"
+    - "curl.*base64"
+    - "scp "
+    - "rsync "
+    - "ftp "
+    - "sftp "
+    - "nc -l"
+    - "ncat -l"

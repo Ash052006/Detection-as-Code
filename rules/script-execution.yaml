@@ -1,0 +1,38 @@
+# =============================================================================
+# DETECTION RULE: Script / LOLBin execution
+# =============================================================================
+# Windows script hosts and living-off-the-land binaries.
+# =============================================================================
+
+id: script-execution-009
+name: "Script or LOLBin execution"
+description: "Alert when log suggests script host or LOLBin execution"
+severity: high
+enabled: true
+
+condition:
+  type: log_match
+  field: message
+  patterns:
+    - "wscript."
+    - "cscript."
+    - "mshta"
+    - "rundll32"
+    - "regsvr32"
+    - "certutil"
+    - "bitsadmin"
+    - "msiexec"
+    - "installutil"
+    - "cmstp"
+    - "forfiles"
+    - "pcalua"
+    - "PresentationHost"
+    - "SyncAppvPublishingServer"
+    - "explorer.exe.*script"
+    - "hh.exe"
+    - "msxsl"
+    - "wmic "
+    - "WMIC "
+    - "svchost.*-k"
+    - "sc create"
+    - "sc config"

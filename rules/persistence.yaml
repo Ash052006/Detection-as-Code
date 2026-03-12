@@ -21,7 +21,7 @@ condition:
     - "reg add HKLM"
     - "reg add HKCU"
     - "RunOnce"
-    - "Run\"
+    - "Run\\"
     - "StartupFolder"
     - "Startup"
     - "crontab -e"

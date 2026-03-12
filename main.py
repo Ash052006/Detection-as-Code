@@ -25,12 +25,22 @@ def main() -> None:
     # Step 3: Run every rule on every log and get back the list of "bell!" moments.
     alerts = run(rules, logs)
 
-    # Step 4: Print each alert so they can see what rang the bell.
-    for a in alerts:
-        print(f"[ALERT] {a['rule_id']} ({a['severity']}) | {a['log']}")
-
-    # Step 5: Print how many bells we rang in total.
-    print(f"\nTotal alerts: {len(alerts)}")
+    # Step 4: Print each alert in a structured block.
+    sep = "-" * 60
+    for i, a in enumerate(alerts, 1):
+        log = a["log"]
+        print(f"\n{sep}")
+        print(f"  ALERT #{i}")
+        print(f"  {sep[:56]}")
+        print(f"  Rule ID   : {a['rule_id']}")
+        print(f"  Severity  : {a['severity']}")
+        print(f"  Timestamp : {log.get('timestamp', '-')}")
+        print(f"  Source    : {log.get('source', '-')}")
+        print(f"  Message   : {log.get('message', '-')}")
+    print(f"\n{sep}")
+    # Step 5: Print summary.
+    print(f"  Total alerts: {len(alerts)}")
+    print(f"{sep}\n")
 
 
 if __name__ == "__main__":

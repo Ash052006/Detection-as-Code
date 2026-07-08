@@ -1,34 +1,26 @@
 """
-Rule-vs-log matching logic.
-Simple: We have one rule (bad words) and one diary line (log). Do we ring the bell? Yes or no.
+Check if one rule matches one log entry (do we ring the bell or not).
 """
 
-# We need "Any" so we can say "this box can hold anything" in type hints.
 from typing import Any
 
 
 def matches(rule: dict[str, Any], log: dict[str, Any]) -> bool:
-    """
-    One rule + one log → True (ring bell) or False (no bell).
-    """
-    # Open the rule and get the part that says "how to check" (the condition).
-    # If the rule has no condition, use an empty box {} so we don't fall over.
+    # Get the "condition" part of the rule — that's where we learn how to check
     cond = rule.get("condition", {})
 
-    # Our rule must say "log_match" (look for words in the diary line).
-    # If it says something else, we don't know it yet → say "no bell."
+    # We only know how to do "log_match" (look for words in a field). Anything else = no match
     if cond.get("type") != "log_match":
         return False
 
-    # Which part of the diary line do we look at? Usually "message" (the main sentence).
+    # Which field in the log do we look at? Usually "message"
     field = cond.get("field", "message")
 
-    # Get the list of bad words from the rule.
+    # The list of bad words / patterns from the rule
     patterns = cond.get("patterns", [])
 
-    # Get that one part (e.g. the message) from the diary line.
-    # If it's not there, use "" (empty sentence) so we don't fall over.
+    # Get that field from the log (e.g. the message text). Use empty string if it's missing
     value = log.get(field) or ""
 
-    # Is any bad word inside this sentence? Yes → True (bell). No → False (no bell).
+    # If any of the patterns appear in that value, we have a match — ring the bell
     return any(p in value for p in patterns)
